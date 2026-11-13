@@ -167,7 +167,7 @@ const favourites = [
     label: "SkillsFuture",
     sub: "Credits",
     key: null,
-    logo: () => <GovLogo src="https://cms.skillsfuture.gov.sg/assets/f75c47aa-0e9e-4410-a3d6-145cb90d6bea.png" bg="#ffffff" alt="SkillsFuture" pad={4} />,
+    logo: () => <div style={{ width: "100%", height: "100%", borderRadius: 12, backgroundColor: "#002B49", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: "bold", fontSize: 11, boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>SF</div>,
   },
 ];
 
@@ -384,7 +384,28 @@ export function HomeScreen({ completed, onDigitalIC, onInbox, onHealthHub }: Pro
             onClick={() => item.action?.()}
             style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, paddingTop: 10, background: "none", border: "none", cursor: "pointer" }}
           >
-            <item.icon size={24} color={item.active ? "#e2231a" : "#8e8e93"} strokeWidth={item.active ? 2.5 : 1.8} />
+            <div style={{ position: "relative", display: "inline-flex" }}>
+              <item.icon size={24} color={item.active ? "#e2231a" : "#8e8e93"} strokeWidth={item.active ? 2.5 : 1.8} />
+              {item.label === "INBOX" && !completed.has("message") && (
+                <span style={{
+                  position: "absolute",
+                  top: -2,
+                  right: -4,
+                  minWidth: 16,
+                  height: 16,
+                  borderRadius: 8,
+                  background: "#e2231a",
+                  color: "#ffffff",
+                  fontSize: 10,
+                  fontWeight: 700,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0 4px",
+                  border: "1.5px solid #ffffff"
+                }}>1</span>
+              )}
+            </div>
             <span style={{ fontSize: 10, fontWeight: item.active ? 800 : 500, color: item.active ? "#e2231a" : "#8e8e93", letterSpacing: "0.04em" }}>{item.label}</span>
           </button>
         ))}
